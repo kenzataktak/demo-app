@@ -22,15 +22,12 @@ jobs:
 
       - name: Build & Test with Maven
         run: mvn clean test
-        working-directory: demo-app
 
       - name: Package JAR
         run: mvn clean package
-        working-directory: demo-app
 
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/demo-app:latest .
-        working-directory: demo-app
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
